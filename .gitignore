@@ -1,0 +1,11 @@
+venv/
+
+__pycache__/
+*.pyc
+
+.env
+
+output_ntv/
+*.log
+
+.vscode/

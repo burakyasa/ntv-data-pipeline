@@ -1,0 +1,42 @@
+
+services:
+  scraper:
+    build: .
+    container_name: scraper_app
+    restart: always
+    user: "1000:1000"
+    environment:
+      - TZ=Europe/Istanbul
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - ./output_ntv:/app/output_ntv
+      - ./ntv_fetcher.log:/app/ntv_fetcher.log
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=scraper_stats
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  postgres-data:
+  grafana-data:
