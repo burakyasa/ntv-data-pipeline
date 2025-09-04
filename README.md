@@ -29,7 +29,7 @@ This project is a complete, end-to-end data pipeline designed to automatically s
 The project follows a simple yet powerful data pipeline architecture:
 
 ```
-+------------------------+        +--------------------------+      +---------------------------+
+   +------------------------+        +--------------------------+      +---------------------------+
    |                        |        |                          |      |                           |
    |  Python Scraper        |        |   PostgreSQL Database    |      |    Grafana Dashboard      |
    |  (Docker Container)    |----->  |   (Docker Container)     |<-----|    (Docker Container)     |
